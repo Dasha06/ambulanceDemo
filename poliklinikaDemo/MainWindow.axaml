@@ -1,0 +1,44 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="poliklinikaDemo.MainWindow"
+        x:CompileBindings="False"
+        Title="poliklinikaDemo">
+    <DockPanel Margin="20">
+        <StackPanel
+            DockPanel.Dock="Top"
+            Orientation="Horizontal"
+            Spacing="15">
+            <TextBlock Text="Выбор врача" VerticalAlignment="Center"/>
+            <ComboBox Name="DoctorsRoleComboBox" Width="200" SelectionChanged="SelectedDocChanged"/>
+            <TextBlock Text="Выбор даты" VerticalAlignment="Center"/>
+            <CalendarDatePicker  Name="SelectedDate" SelectedDateChanged="SelectedDateClendarPicker"/>
+        </StackPanel>
+        <ScrollViewer Margin="0,30,0,0" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <TextBlock Text="Свободные записи"/>
+                 <ItemsControl Name="FreAppointmentsItemControl">
+                     <ItemsControl.ItemTemplate>
+                          <DataTemplate>
+                              <Grid Margin="0,0,0,5" ColumnDefinitions="*,*,*">
+                                  <TextBlock Text="{Binding SchedTime}" FontSize="15" Grid.Column="0" Margin="20,0,0,20"/>
+                                  <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="3">
+                                      <TextBlock Text="{Binding Doc.DocFname}"/>
+                                      <TextBlock Text="{Binding Doc.DocSname}"/>
+                                      <TextBlock Text="{Binding Doc.Doclname}"/>
+                                  </StackPanel>
+                                  <Button 
+                                      Grid.Column="2"
+                                      Content="Забронировать"
+                                      Tag="{Binding SchedId}"
+                                      Click="AppointmentButton"/>
+                              </Grid>
+                          </DataTemplate>
+                     </ItemsControl.ItemTemplate>
+                 </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
+    </DockPanel>
+</Window>
