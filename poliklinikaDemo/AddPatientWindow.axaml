@@ -8,14 +8,14 @@
     <DockPanel Margin="15">
         <StackPanel 
             DockPanel.Dock="Top"
-            Orientation="Horizontal" Spacing="10">
+            Orientation="Horizontal" Spacing="15">
             <TextBlock Name="FioDoctorsTextBlock"/>
             <TextBlock Name="DateAndTimeTextBlock"/>
         </StackPanel>
-        <StackPanel Spacing="15">
-        <TextBlock Text="Пациент"/>
+        <StackPanel Margin="15">
+        <TextBlock Text="Данные пациента"/>
         <Grid ColumnDefinitions="*,5*"
-              RowDefinitions="*,*,*,*,*">
+              RowDefinitions="*,*,*,*,*,*">
             
             <TextBlock Text="Фамилия:" VerticalAlignment="Center"/>
             <TextBox Grid.Column="1" 
@@ -41,6 +41,8 @@
             <TextBox Grid.Row="4" Grid.Column="1" 
                      Name="ReasonPatientTextBox" Width="300"  Height="70"
                      HorizontalAlignment="Left" Margin="0,5"/>
+            <Button Grid.Column="0" Grid.Row="5" 
+                    Content="Записать" Click="CreateAnAppointmentButton"/>
         </Grid>
         </StackPanel>
     </DockPanel>

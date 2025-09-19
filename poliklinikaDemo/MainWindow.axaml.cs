@@ -35,11 +35,34 @@ public partial class MainWindow : Window
         }
     }
 
-    private void AppointmentButton(object? sender, RoutedEventArgs e)
+    private async void AppointmentButton(object? sender, RoutedEventArgs e)
     {
         int id = (int)(sender as Button).Tag;
         var selectedAppointment = Schedules.FirstOrDefault(x => x.SchedId == id);
-        
+        AddPatientWindow addPatientWindow = new AddPatientWindow(selectedAppointment);
+        var result = await addPatientWindow.ShowDialog<bool>(this);
+        if (result == true)
+        {
+            Schedules = DBHelper.context.Schedules
+                .Include(x => x.Doc)
+                .ThenInclude(x => x.Roles)
+                .Where(x => x.SchedIsClosed == false)
+                .ToList();
+
+            var selectedDoc = DoctorsRoleComboBox.SelectionBoxItem as string;
+            var selectDate = SelectedDate.SelectedDate;
+
+            if (selectDate != null && selectedDoc != null)
+            {
+                FreAppointmentsItemControl.ItemsSource = Schedules.Where(x =>
+                    x.SchedDate == DateOnly.FromDateTime((DateTime)selectDate) &&
+                    x.Doc.Roles.Any(y => y.RoleName == selectedDoc)).ToList();
+            }
+            else
+            {
+                FreAppointmentsItemControl.ItemsSource = Schedules;
+            }
+        }
     }
 
     private void SelectedDocChanged(object? sender, SelectionChangedEventArgs e)

@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace poliklinikaDemo.Models;
 
-public class Doctor
+public partial class Doctor
 {
     public int DocId { get; set; }
 

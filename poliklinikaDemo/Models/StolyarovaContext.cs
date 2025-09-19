@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
 namespace poliklinikaDemo.Models;
@@ -16,6 +17,8 @@ public partial class StolyarovaContext : DbContext
 
     public virtual DbSet<Appointment> Appointments { get; set; }
 
+    public virtual DbSet<AppointmentsAndPatient> AppointmentsAndPatients { get; set; }
+
     public virtual DbSet<Cabinet> Cabinets { get; set; }
 
     public virtual DbSet<Doctor> Doctors { get; set; }
@@ -27,9 +30,8 @@ public partial class StolyarovaContext : DbContext
     public virtual DbSet<Schedule> Schedules { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https: //go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseNpgsql(
-            "Host=79.174.88.58;Port=16639;Database=Stolyarova;Username=Stolyarova;Password=Stolyarova123.");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseNpgsql("Host=79.174.88.58;Port=16639;Database=Stolyarova;Username=Stolyarova;Password=Stolyarova123.");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -50,6 +52,28 @@ public partial class StolyarovaContext : DbContext
             entity.HasOne(d => d.Sched).WithMany(p => p.Appointments)
                 .HasForeignKey(d => d.SchedId)
                 .HasConstraintName("appointments_sched_id_fkey");
+        });
+
+        modelBuilder.Entity<AppointmentsAndPatient>(entity =>
+        {
+            entity.HasKey(e => e.AppointId).HasName("appoint_key");
+
+            entity.ToTable("appointments_and_patient", "poliklinika");
+
+            entity.Property(e => e.AppointId)
+                .ValueGeneratedNever()
+                .HasColumnName("appoint_id");
+            entity.Property(e => e.PatinId).HasColumnName("patin_id");
+
+            entity.HasOne(d => d.Appoint).WithOne(p => p.AppointmentsAndPatient)
+                .HasForeignKey<AppointmentsAndPatient>(d => d.AppointId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("appointments_and_patient_appoint_id_fkey");
+
+            entity.HasOne(d => d.Patin).WithMany(p => p.AppointmentsAndPatients)
+                .HasForeignKey(d => d.PatinId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("appointments_and_patient_patin_id_fkey");
         });
 
         modelBuilder.Entity<Cabinet>(entity =>
@@ -111,25 +135,6 @@ public partial class StolyarovaContext : DbContext
             entity.Property(e => e.PatinFname).HasColumnName("patin_fname");
             entity.Property(e => e.PatinLname).HasColumnName("patin_lname");
             entity.Property(e => e.PatinSname).HasColumnName("patin_sname");
-
-            entity.HasMany(d => d.Appoints).WithMany(p => p.Patins)
-                .UsingEntity<Dictionary<string, object>>(
-                    "AppointmentsAndPatient",
-                    r => r.HasOne<Appointment>().WithMany()
-                        .HasForeignKey("AppointId")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("appointments_and_patient_appoint_id_fkey"),
-                    l => l.HasOne<Patient>().WithMany()
-                        .HasForeignKey("PatinId")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("appointments_and_patient_patin_id_fkey"),
-                    j =>
-                    {
-                        j.HasKey("PatinId", "AppointId").HasName("patin_appoint_key");
-                        j.ToTable("appointments_and_patient", "poliklinika");
-                        j.IndexerProperty<int>("PatinId").HasColumnName("patin_id");
-                        j.IndexerProperty<int>("AppointId").HasColumnName("appoint_id");
-                    });
         });
 
         modelBuilder.Entity<Role>(entity =>

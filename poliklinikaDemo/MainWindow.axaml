@@ -31,7 +31,7 @@
                                   </StackPanel>
                                   <Button 
                                       Grid.Column="2"
-                                      Content="Забронировать"
+                                      Content="Записать"
                                       Tag="{Binding SchedId}"
                                       Click="AppointmentButton"/>
                               </Grid>

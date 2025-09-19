@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace poliklinikaDemo.Models;
 
-public class Role
+public partial class Role
 {
     public int RoleId { get; set; }
 

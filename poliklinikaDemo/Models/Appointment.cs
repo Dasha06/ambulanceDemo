@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace poliklinikaDemo.Models;
 
-public class Appointment
+public partial class Appointment
 {
     public int AppointId { get; set; }
 
@@ -10,7 +11,7 @@ public class Appointment
 
     public string AppointReason { get; set; } = null!;
 
-    public virtual Schedule? Sched { get; set; }
+    public virtual AppointmentsAndPatient? AppointmentsAndPatient { get; set; }
 
-    public virtual ICollection<Patient> Patins { get; set; } = new List<Patient>();
+    public virtual Schedule? Sched { get; set; }
 }

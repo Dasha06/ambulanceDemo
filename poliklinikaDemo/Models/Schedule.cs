@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace poliklinikaDemo.Models;
 
-public class Schedule
+public partial class Schedule
 {
     public int SchedId { get; set; }
 
@@ -13,7 +13,7 @@ public class Schedule
 
     public int? DocId { get; set; }
 
-    public bool? SchedIsClosed { get; set; }
+    public bool SchedIsClosed { get; set; }
 
     public virtual ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
 

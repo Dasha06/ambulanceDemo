@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace poliklinikaDemo.Models;
 
-public class Patient
+public partial class Patient
 {
     public int PatinId { get; set; }
 
@@ -15,5 +15,5 @@ public class Patient
 
     public DateOnly? PatinBirthday { get; set; }
 
-    public virtual ICollection<Appointment> Appoints { get; set; } = new List<Appointment>();
+    public virtual ICollection<AppointmentsAndPatient> AppointmentsAndPatients { get; set; } = new List<AppointmentsAndPatient>();
 }

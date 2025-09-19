@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace poliklinikaDemo.Models;
 
-public class Cabinet
+public partial class Cabinet
 {
     public int CabId { get; set; }
 
