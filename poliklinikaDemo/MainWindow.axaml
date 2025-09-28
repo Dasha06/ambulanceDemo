@@ -19,7 +19,7 @@
             <Button Content="Добавить данные" 
                     CornerRadius="7" Click="AddNewDataClick"
                     Background="DarkCyan" Foreground="AliceBlue"/>
-            <Button Content="Изменение данных" CornerRadius="7" Foreground="AliceBlue"
+            <Button Content="Просмотр данных" CornerRadius="7" Foreground="AliceBlue"
                     Background="ForestGreen" Click="SeeAllDataClick"/>
         </StackPanel>
         <ScrollViewer Margin="0,20,0,0" VerticalScrollBarVisibility="Auto">
