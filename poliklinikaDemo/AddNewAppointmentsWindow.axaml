@@ -1,0 +1,43 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="poliklinikaDemo.AddNewAppointmentsWindow"
+        x:CompileBindings="False"
+        Title="AddNewAppointmentsWindow">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Height="70" Background="#8BD1B4">
+            <TextBlock Text="Добавление записей" Margin="20,15" FontSize="30" Foreground="#107090"/>
+        </StackPanel>
+        <ScrollViewer>
+            <StackPanel Orientation="Vertical" Spacing="12" HorizontalAlignment="Center" Margin="20,20">
+                <TextBlock Text="Дата" FontSize="16" FontWeight="Bold"/>
+                <CalendarDatePicker x:Name="DatePicker" Width="200"/>
+                
+                <TextBlock Text="Время начала" FontSize="16" FontWeight="Bold" Margin="0,10,0,0"/>
+                <TimePicker x:Name="TimePicker"/>
+                
+                <TextBlock Text="Врач" FontSize="16" FontWeight="Bold" Margin="0,10,0,0"/>
+                <ComboBox x:Name="DoctorComboBox" Width="300"
+                         DisplayMemberBinding="{Binding FullName}"
+                         SelectedValueBinding="{Binding DocId}"/>
+                
+                <TextBlock Text="Количество записей" FontSize="16" FontWeight="Bold" Margin="0,10,0,0"/>
+                <NumericUpDown x:Name="AppointmentCountPicker" Width="200"
+                              Minimum="1" Maximum="50" Value="1"/>
+                
+                <TextBlock Text="Промежуток между записями (минуты)" FontSize="16" FontWeight="Bold" Margin="0,10,0,0"/>
+                <NumericUpDown x:Name="IntervalPicker" Width="200"
+                              Minimum="15" Maximum="240" Value="30" Increment="15"/>
+                
+                <Button Content="Сохранить записи" Width="200" Height="40" 
+                       HorizontalAlignment="Center" Margin="0,30,0,0" 
+                       Background="#107090" Foreground="White" 
+                       VerticalContentAlignment="Center"
+                       HorizontalContentAlignment="Center"
+                       FontSize="16" Click="SaveButton_Click"/>
+            </StackPanel>
+        </ScrollViewer>
+    </DockPanel>
+</Window>

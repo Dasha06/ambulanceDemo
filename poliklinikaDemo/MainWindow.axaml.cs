@@ -31,7 +31,7 @@ public partial class MainWindow : Window
         if (selectDate != null)
         {
             FreAppointmentsItemControl.ItemsSource = sortedSchedules.Where(x => x.SchedDate == DateOnly.FromDateTime((DateTime)selectDate) 
-                                                                          && x.Doc.Roles.Any(y => y.RoleName == selectedDoc)).ToList();
+                                                                          && x.Doc.Roles.Any(y => y.RoleName == selectedDoc)).OrderBy(x => x.SchedTime).ToList();
         }
     }
 
@@ -74,5 +74,18 @@ public partial class MainWindow : Window
         {
             FreAppointmentsItemControl.ItemsSource = sortedSchedules.FindAll(x => x.Doc.Roles.Any(y => y.RoleName == selectedDoc));
         }
+    }
+
+    private void AddNewDataClick(object? sender, RoutedEventArgs e)
+    {
+        AdapterAddNewDataWindow adaptNewData =  new AdapterAddNewDataWindow();
+        adaptNewData.Show();
+        Close();
+    }
+
+    private void SeeAllDataClick(object? sender, RoutedEventArgs e)
+    {
+        ViewDataWindow viewDataWindow = new ViewDataWindow();
+        viewDataWindow.Show();
     }
 }

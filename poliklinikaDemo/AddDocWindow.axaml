@@ -1,0 +1,43 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="poliklinikaDemo.AddDocWindow"
+        x:CompileBindings="False"
+        Title="Добавление врача">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Background="LightBlue" Height="70">
+            <TextBlock Text="Добавления врача" Margin="20,15" FontSize="30"/>
+        </StackPanel>
+        <StackPanel Spacing="12" HorizontalAlignment="Center" Margin="0,10,0,0">
+            <TextBlock Text="Фамилия"/>
+            <TextBox x:Name="FirstNameTextBox" Width="300" CornerRadius="10"/>
+
+            <TextBlock Text="Имя"/>
+            <TextBox x:Name="SecondNameTextBox" CornerRadius="10"/>
+
+            <TextBlock Text="Отчество"/>
+            <TextBox x:Name="LastNameTextBox" CornerRadius="10"/>
+
+            <Grid ColumnDefinitions="*,*" RowDefinitions="*,*">
+                
+                <TextBlock Text="Кабинет" Margin="43,0,0,10"/>
+                <ComboBox Grid.Row="1" x:Name="CabinetComboBox" CornerRadius="10" Margin="40,0,0,10"/>
+
+                <TextBlock Grid.Column="1" Text="Роль" Margin="55,0,0,10"/>
+                <ComboBox Grid.Row="1" Grid.Column="1" x:Name="RoleComboBox" CornerRadius="10" Margin="40,0,0,10"/>
+            </Grid>
+
+            <StackPanel Orientation="Horizontal" Spacing="100" HorizontalAlignment="Center" Margin="0,12,0,0">
+                
+                <Button Content="Сохранить" Click="SaveClick" 
+                        Background="LightGreen" CornerRadius="10"
+                        Height="40" VerticalContentAlignment="Center"/>
+                <Button Content="Отмена" Click="CancelClick" 
+                        Background="LightCoral" CornerRadius="10"
+                        Height="40" VerticalContentAlignment="Center"/>
+            </StackPanel>
+        </StackPanel>
+    </DockPanel>
+</Window>

@@ -1,0 +1,114 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:models="using:poliklinikaDemo.Models"
+        mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="600"
+        x:Class="poliklinikaDemo.ViewDataWindow"
+        Title="Просмотр данных"
+        Width="1000" Height="600">
+    <DockPanel Background="Ivory">
+        <StackPanel DockPanel.Dock="Top" Height="60" Background="#319979">
+            <TextBlock Text="Просмотр данных" Margin="20,15" FontSize="24" Foreground="Azure"/>
+        </StackPanel>
+
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" 
+                    Margin="0,20,0,20">
+            <Button Content="← Назад" Click="BackClick" Background="#FF9800" 
+                    Foreground="White" Padding="20,10" FontSize="16" CornerRadius="15"/>
+        </StackPanel>
+        
+        <StackPanel>
+            <Grid Margin="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <!-- Столбец 1: Врачи -->
+                <StackPanel Grid.Column="0" Margin="10">
+                    <TextBlock Text="Врачи" FontSize="18" FontWeight="Bold" Margin="0,0,0,10" 
+                               HorizontalAlignment="Center" Foreground="#2E7D32"/>
+                    <ListBox x:Name="DoctorsListBox" Height="400" Background="White" 
+                             BorderBrush="#4CAF50" BorderThickness="2" CornerRadius="5">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate DataType="models:Doctor">
+                                <StackPanel Margin="5">
+                                    <TextBlock Text="{Binding DocFname}" FontWeight="Bold" FontSize="14"/>
+                                    <TextBlock Text="{Binding DocSname}" FontSize="12" Foreground="Gray"/>
+                                    <TextBlock Text="{Binding Doclname}" FontSize="12" Foreground="Gray"/>
+                                    <ItemsControl ItemsSource="{Binding Roles}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate DataType="models:Role">
+                                                <TextBlock Text="{Binding RoleName}" FontSize="11" Foreground="#4CAF50"/>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                    <TextBlock Text="{Binding Cab.CabNumber}" FontSize="11" Foreground="#2196F3"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+
+                <!-- Столбец 2: Занятые записи -->
+                <StackPanel Grid.Column="1" Margin="10">
+                    <TextBlock Text="Занятые записи" FontSize="18" FontWeight="Bold" Margin="0,0,0,10" 
+                               HorizontalAlignment="Center" Foreground="#D32F2F"/>
+                    <ListBox x:Name="AppointmentsListBox" Height="400" Background="White" 
+                             BorderBrush="#F44336" BorderThickness="2" CornerRadius="5">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate DataType="models:AppointmentsAndPatient">
+                                <StackPanel Margin="5">
+                                    <TextBlock Text="{Binding Appoint.Sched.SchedTime}" FontWeight="Bold" FontSize="14"/>
+                                    <TextBlock Text="{Binding Appoint.Sched.Doc.DocFname}" FontSize="12" Foreground="Gray"/>
+                                    <TextBlock Text="{Binding Appoint.Sched.Doc.DocSname}" FontSize="12" Foreground="Gray"/>
+                                    <TextBlock Text="{Binding Patin.PatinFname}" FontSize="11" Foreground="#4CAF50"/>
+                                    <TextBlock Text="{Binding Patin.PatinSname}" FontSize="11" Foreground="#4CAF50"/>
+                                    <TextBlock Text="{Binding Appoint.AppointReason}" FontSize="10" Foreground="#FF5722" 
+                                               FontStyle="Italic" TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+
+                <!-- Столбец 3: Должности -->
+                <StackPanel Grid.Column="2" Margin="10">
+                    <TextBlock Text="Должности" FontSize="18" FontWeight="Bold" Margin="0,0,0,10" 
+                               HorizontalAlignment="Center" Foreground="#7B1FA2"/>
+                    <ListBox x:Name="RolesListBox" Height="400" Background="White" 
+                             BorderBrush="#9C27B0" BorderThickness="2" CornerRadius="5">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate DataType="models:Role">
+                                <StackPanel Margin="5">
+                                    <TextBlock Text="{Binding RoleName}" FontWeight="Bold" FontSize="14" 
+                                               HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+
+                <!-- Столбец 4: Кабинеты -->
+                <StackPanel Grid.Column="3" Margin="10">
+                    <TextBlock Text="Кабинеты" FontSize="18" FontWeight="Bold" Margin="0,0,0,10" 
+                               HorizontalAlignment="Center" Foreground="#F57C00"/>
+                    <ListBox x:Name="CabinetsListBox" Height="400" Background="White" 
+                             BorderBrush="#FF9800" BorderThickness="2" CornerRadius="5">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate DataType="models:Cabinet">
+                                <StackPanel Margin="5">
+                                    <TextBlock Text="{Binding CabNumber}" FontWeight="Bold" FontSize="14" 
+                                               HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </DockPanel>
+</Window>

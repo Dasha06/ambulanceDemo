@@ -3,9 +3,15 @@
   <component name="AvaloniaProject">
     <option name="projectPerEditor">
       <map>
+        <entry key="poliklinikaDemo/AdapterAddNewDataWindow.axaml" value="poliklinikaDemo/poliklinikaDemo.csproj" />
+        <entry key="poliklinikaDemo/AddCabinetWindow.axaml" value="poliklinikaDemo/poliklinikaDemo.csproj" />
+        <entry key="poliklinikaDemo/AddDocWindow.axaml" value="poliklinikaDemo/poliklinikaDemo.csproj" />
+        <entry key="poliklinikaDemo/AddNewAppointmentsWindow.axaml" value="poliklinikaDemo/poliklinikaDemo.csproj" />
         <entry key="poliklinikaDemo/AddPatientWindow.axaml" value="poliklinikaDemo/poliklinikaDemo.csproj" />
+        <entry key="poliklinikaDemo/AddRoleWindow.axaml" value="poliklinikaDemo/poliklinikaDemo.csproj" />
         <entry key="poliklinikaDemo/App.axaml" value="poliklinikaDemo/poliklinikaDemo.csproj" />
         <entry key="poliklinikaDemo/MainWindow.axaml" value="poliklinikaDemo/poliklinikaDemo.csproj" />
+        <entry key="poliklinikaDemo/ViewDataWindow.axaml" value="poliklinikaDemo/poliklinikaDemo.csproj" />
         <entry key="restaurantDemo/MainWindow.axaml" value="restaurantDemo/restaurantDemo.csproj" />
         <entry key="restaurantDemo/WorkerWindow.axaml" value="restaurantDemo/restaurantDemo.csproj" />
       </map>

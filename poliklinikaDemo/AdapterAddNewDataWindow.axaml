@@ -1,0 +1,25 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="poliklinikaDemo.AdapterAddNewDataWindow"
+        Title="AdapterAddNewDataWindow">
+    <DockPanel Background="Ivory">
+        <StackPanel DockPanel.Dock="Top" Height="70" Background="#319979">
+            <TextBlock Text="Добавление" Margin="20,15" FontSize="30" Foreground="Azure"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Spacing="25" Margin="30">
+            <Button Content="Врач" Click="AddNewDocClick" Background="LightBlue" 
+                    Height="60" FontSize="18" Padding="20" CornerRadius="15"/>
+            <Button Content="Записи" Background="#8BD1B4" Click="AddNewAppointmentsClick"
+                    Height="60" FontSize="18" Padding="20" CornerRadius="15"/>
+            <Button Content="Кабинет" Background="#91CCF1" Click="AddNewCaminetsClick"
+                    Height="60" FontSize="18" Padding="20" CornerRadius="15"/>
+            <Button Content="Должность" Background="#6CA2EE" Click="AddNewRolesClick"
+                    Height="60" FontSize="18" Padding="20" CornerRadius="15"/>
+            <Button Content="← Назад к главному окну" Click="BackToMainClick" Background="#FF9800" 
+                    Height="60" FontSize="18" Padding="20" Margin="0,30,0,0" CornerRadius="15"/>
+        </StackPanel>
+    </DockPanel>
+</Window>

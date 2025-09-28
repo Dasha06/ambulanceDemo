@@ -1,0 +1,28 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="600"
+        x:Class="poliklinikaDemo.AddCabinetWindow"
+        Title="Добавление кабинетов"
+        Width="500" Height="600">
+    <DockPanel Background="Ivory">
+        <StackPanel DockPanel.Dock="Top" Height="60" Background="#319979">
+            <TextBlock Text="Добавление кабинетов" Margin="20,15" FontSize="24" Foreground="Azure"/>
+        </StackPanel>
+        <ScrollViewer>
+            <StackPanel Orientation="Vertical" Spacing="15" Margin="30">
+                <TextBlock Text="Номера кабинетов:" FontSize="16"/>
+                <StackPanel x:Name="CabinetFieldsPanel" Orientation="Vertical" Spacing="10"/>
+                <Button Content="+ Добавить поле" Click="AddFieldClick" Background="#2196F3" 
+                        Foreground="White" Padding="15,8" FontSize="14" HorizontalAlignment="Left"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20" Margin="0,20,0,0">
+                    <Button Content="Сохранить все" Click="SaveCabinetsClick" Background="#4CAF50" 
+                            Foreground="White" Padding="20,10" FontSize="16"/>
+                    <Button Content="Отмена" Click="CancelClick" Background="#f44336" 
+                            Foreground="White" Padding="20,10" FontSize="16"/>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </DockPanel>
+</Window>

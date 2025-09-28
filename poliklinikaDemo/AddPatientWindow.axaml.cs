@@ -16,7 +16,7 @@ public partial class AddPatientWindow : Window
         selectedSchedule =  schedule;
         InitializeComponent();
         FioDoctorsTextBlock.Text = schedule.Doc.DocSname + " " + schedule.Doc.Doclname;
-        DateAndTimeTextBlock.Text = schedule.SchedDate.ToString() + " " + schedule.SchedTime.ToString();
+        DateAndTimeTextBlock.Text = schedule.SchedDate + " " + schedule.SchedTime;
     }
 
     private void CreateAnAppointmentButton(object? sender, RoutedEventArgs e)

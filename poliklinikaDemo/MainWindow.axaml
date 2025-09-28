@@ -4,6 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="poliklinikaDemo.MainWindow"
+        Background="Azure"
         x:CompileBindings="False"
         Title="poliklinikaDemo">
     <DockPanel Margin="20">
@@ -12,13 +13,18 @@
             Orientation="Horizontal"
             Spacing="15">
             <TextBlock Text="Выбор врача" VerticalAlignment="Center"/>
-            <ComboBox Name="DoctorsRoleComboBox" Width="200" SelectionChanged="SelectedDocChanged"/>
+            <ComboBox Name="DoctorsRoleComboBox" Width="200" SelectionChanged="SelectedDocChanged" CornerRadius="7"/>
             <TextBlock Text="Выбор даты" VerticalAlignment="Center"/>
-            <CalendarDatePicker  Name="SelectedDate" SelectedDateChanged="SelectedDateClendarPicker"/>
+            <CalendarDatePicker  Name="SelectedDate" SelectedDateChanged="SelectedDateClendarPicker" CornerRadius="7"/>
+            <Button Content="Добавить данные" 
+                    CornerRadius="7" Click="AddNewDataClick"
+                    Background="DarkCyan" Foreground="AliceBlue"/>
+            <Button Content="Изменение данных" CornerRadius="7" Foreground="AliceBlue"
+                    Background="ForestGreen" Click="SeeAllDataClick"/>
         </StackPanel>
-        <ScrollViewer Margin="0,30,0,0" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Margin="0,20,0,0" VerticalScrollBarVisibility="Auto">
             <StackPanel>
-                <TextBlock Text="Свободные записи"/>
+                <TextBlock Text="Свободные записи" Margin="0,0,0,15"/>
                  <ItemsControl Name="FreAppointmentsItemControl">
                      <ItemsControl.ItemTemplate>
                           <DataTemplate>
@@ -33,7 +39,8 @@
                                       Grid.Column="2"
                                       Content="Записать"
                                       Tag="{Binding SchedId}"
-                                      Click="AppointmentButton"/>
+                                      Click="AppointmentButton"
+                                      CornerRadius="7"/>
                               </Grid>
                           </DataTemplate>
                      </ItemsControl.ItemTemplate>
